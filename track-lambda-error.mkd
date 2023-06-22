@@ -1,0 +1,43 @@
+    Create a CloudWatch Alarm:
+
+terraform
+
+resource "aws_cloudwatch_metric_alarm" "lambda_error_alarm" {
+  alarm_name          = "LambdaErrorAlarm"
+  comparison_operator = "GreaterThanThreshold"
+  evaluation_periods  = 1
+  metric_name         = "Errors"
+  namespace           = "AWS/Lambda"
+  period              = 60
+  statistic           = "SampleCount"
+  threshold           = 0
+  alarm_description   = "Alarm triggered when Lambda function encounters errors"
+  alarm_actions       = [aws_sns_topic.lambda_error_topic.arn]
+  dimensions = {
+    FunctionName = aws_lambda_function.test_lambda_function.function_name
+  }
+}
+
+In this example, we're creating a CloudWatch alarm named "LambdaErrorAlarm" that monitors the "Errors" metric of your Lambda function. The comparison_operator is set to "GreaterThanThreshold" with a threshold of 0, which means the alarm will be triggered if the error count is greater than 0. The evaluation_periods is set to 1, indicating that the alarm will check for errors every 60 seconds.
+
+    Create an SNS Topic for Notifications:
+
+terraform
+
+resource "aws_sns_topic" "lambda_error_topic" {
+  name = "LambdaErrorTopic"
+}
+
+This resource creates an SNS topic named "LambdaErrorTopic" which will be used to send notifications when the alarm is triggered.
+
+    Subscribe to the SNS Topic:
+
+terraform
+
+resource "aws_sns_topic_subscription" "lambda_error_topic_subscription" {
+  topic_arn = aws_sns_topic.lambda_error_topic.arn
+  protocol  = "email"
+  endpoint  = "your-email@example.com"
+}
+
+This resource subscribes to the SNS topic and sends email notifications to the specified email address.

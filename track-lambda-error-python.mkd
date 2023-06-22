@@ -1,0 +1,25 @@
+import logging
+
+logger = logging.getLogger()
+logger.setLevel(logging.ERROR)
+
+def lambda_handler(event, context):
+    try:
+        # Lambda function logic
+        result = some_function(event)
+        return result
+    except Exception as e:
+        # Log the error
+        logger.error('An error occurred: {}'.format(str(e)))
+        # Raise an exception to propagate the error
+        raise e
+
+In this example, we're defining a Lambda function lambda_handler that wraps your function logic. The try block contains your function logic, and any exceptions that occur will be caught in the except block.
+
+Inside the except block, we're logging the error using the logging module. The logger is set to log messages with a severity level of ERROR or higher. You can customize the logging configuration as per your requirements.
+
+Additionally, we use str(e) to get a string representation of the exception and log it. You can include additional details or formatting in the log message if needed.
+
+Finally, we re-raise the exception using raise e to propagate the error. This ensures that the Lambda function invocation is marked as a failure.
+
+By implementing error handling in your Lambda function, you can catch and log any errors that occur during execution. This helps in troubleshooting and monitoring the failures of your Lambda function.

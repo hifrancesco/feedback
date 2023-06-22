@@ -1,0 +1,7 @@
+MTTR stands for Mean Time to Repair. It is a metric used to measure the average time it takes to repair or recover from a system failure or incident. MTTR is commonly used in the context of incident management and is an important metric for evaluating the efficiency of incident response and resolution processes.
+
+MTTR is calculated by dividing the total time spent on resolving incidents by the total number of incidents within a specific timeframe. The metric provides insights into how quickly an organization can detect, diagnose, and recover from incidents or system failures.
+
+A low MTTR indicates that incidents are being resolved quickly, minimizing the impact on the system and reducing downtime. It is desirable to have a low MTTR, as it signifies effective incident response processes, efficient troubleshooting, and rapid recovery.
+
+Tracking MTTR can help organizations identify areas for improvement in incident response and resolution, such as streamlining processes, improving documentation, implementing automation, or enhancing the skills of the support team. By reducing MTTR, organizations can minimize the impact of incidents, improve system availability, and enhance overall operational efficiency.
